@@ -11,6 +11,7 @@ static NSString *const kShareOptionMessage = @"message";
 static NSString *const kShareOptionSubject = @"subject";
 static NSString *const kShareOptionFiles = @"files";
 static NSString *const kShareOptionUrl = @"url";
+static NSString *const kShareOptionAdditionalCallbacks = @"additional_callbacks";
 
 @implementation SocialSharing {
   UIPopoverController *_popover;
@@ -88,6 +89,7 @@ static NSString *const kShareOptionUrl = @"url";
     NSString *subject   = options[kShareOptionSubject];
     NSArray  *filenames = options[kShareOptionFiles];
     NSString *urlString = options[kShareOptionUrl];
+    NSString *needAdditionalCallbacks = options[kShareOptionAdditionalCallbacks];
 
     NSMutableArray *activityItems = [[NSMutableArray alloc] init];
 
@@ -108,14 +110,25 @@ static NSString *const kShareOptionUrl = @"url";
       }
       [activityItems addObjectsFromArray:files];
     }
-
+    
     if (urlString != (id)[NSNull null] && urlString != nil) {
         [activityItems addObject:[NSURL URLWithString:[urlString URLEncodedString]]];
+    }
+    
+    if (needAdditionalCallbacks != (id)[NSNull null] && needAdditionalCallbacks != nil) {
+        CDVPluginResult * pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"before UI init"];
+        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
     }
 
     UIActivity *activity = [[UIActivity alloc] init];
     NSArray *applicationActivities = [[NSArray alloc] initWithObjects:activity, nil];
     UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:applicationActivities];
+    
+    if (needAdditionalCallbacks != (id)[NSNull null] && needAdditionalCallbacks != nil) {
+        CDVPluginResult * pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"after UI init"];
+        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+    }
+    
     if (subject != (id)[NSNull null] && subject != nil) {
       [activityVC setValue:subject forKey:@"subject"];
     }
