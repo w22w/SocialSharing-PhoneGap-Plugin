@@ -386,7 +386,7 @@ window.plugins.socialsharing.saveToPhotoAlbum(
   onError    // optional error function
 );
 ```
-#### Adding extra calls for sicess callback (before and after showing widget) (iOS only currently)
+#### Adding extra calls for success callback (before and after showing widget) (iOS only currently)
 
 ```js
 var options = {
