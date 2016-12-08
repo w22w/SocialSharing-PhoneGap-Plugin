@@ -18,9 +18,9 @@ var options = {
 onSuccess = function(data){
     if( data && data.app ){
         //it is completely finished
-    }else if(data == 'before UI init'){
+    }else if(data == 'before-UI-init'){
       //do something
-    } else if(data == 'after UI init'){
+    } else if(data == 'after-UI-init'){
         hidePleaseWaitMessage();
     }
 };

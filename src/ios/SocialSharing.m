@@ -116,7 +116,7 @@ static NSString *const kShareOptionAdditionalCallbacks = @"additional_callbacks"
     }
     
     if (needAdditionalCallbacks != (id)[NSNull null] && needAdditionalCallbacks != nil) {
-        CDVPluginResult * pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"before UI init"];
+        CDVPluginResult * pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"before-UI-init"];
         [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
     }
 
@@ -125,7 +125,7 @@ static NSString *const kShareOptionAdditionalCallbacks = @"additional_callbacks"
     UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:applicationActivities];
     
     if (needAdditionalCallbacks != (id)[NSNull null] && needAdditionalCallbacks != nil) {
-        CDVPluginResult * pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"after UI init"];
+        CDVPluginResult * pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"after-UI-init"];
         [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
     }
     
