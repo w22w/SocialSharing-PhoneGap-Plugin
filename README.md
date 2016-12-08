@@ -2,6 +2,9 @@
 
 forked from https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin
 
+Extremely want to help? Please do it here:
+[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=N6HK35MY4KFZ6&lc=UA&item_name=opensource%2edevelopment&item_number=development4opensource&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted)
+
 #### Adding extra calls for success callback (before and after showing widget) (iOS only currently)
 
 ```js
@@ -26,7 +29,7 @@ onSuccess = function(data){
 showPleaseWaitMessage();
 
 window.plugins.socialsharing.shareWithOptions(
-  ['https://www.google.nl/images/srpr/logo4w.png','www/image.gif'],
+  options,
   onSuccess, // optional success function
   onError    // optional error function
 );
